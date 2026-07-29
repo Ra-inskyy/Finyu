@@ -1,8 +1,6 @@
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useQuery } from "convex/react";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { api } from "../../convex/_generated/api";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 

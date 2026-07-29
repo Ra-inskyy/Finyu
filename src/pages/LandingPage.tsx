@@ -50,11 +50,9 @@ const FEATURES = [
 function LandingPageView({
   isAuthenticated,
   isLoading,
-  showAuthActions,
 }: {
   isAuthenticated: boolean;
   isLoading: boolean;
-  showAuthActions: boolean;
 }) {
   return (
     <div className="flex-1">
@@ -243,7 +241,6 @@ export function LandingPage() {
     <LandingPageView
       isAuthenticated={isAuthenticated}
       isLoading={isLoading}
-      showAuthActions
     />
   );
 }
