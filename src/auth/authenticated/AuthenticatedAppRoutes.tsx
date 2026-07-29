@@ -1,0 +1,70 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import { OAUTH_CALLBACK_PATH } from "@/auth/oauthReturn";
+import { AppLayout } from "@/components/AppLayout";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { PublicLayout } from "@/components/PublicLayout";
+import { PublicOnlyRoute } from "@/components/PublicOnlyRoute";
+import { ViktorAutoSignIn } from "@/components/ViktorAutoSignIn";
+import { ViktorProductAuthProvider } from "@/lib/viktor-spaces-access/ViktorProductAuthProvider";
+import {
+  BudgetsPage,
+  DashboardPage,
+  ExpensesPage,
+  IncomePage,
+  LandingPage,
+  LoginPage,
+  ReportsPage,
+  SavingsGoalPage,
+  SavingsPage,
+  SettingsPage,
+  SignupPage,
+  WalletsPage,
+  WhatsAppPage,
+} from "@/pages";
+import { ViktorOAuthCallbackPage } from "@/pages/ViktorOAuthCallbackPage";
+
+export function AuthenticatedRoutes() {
+  return (
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route element={<PublicOnlyRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Route>
+      </Route>
+
+      {/* Return leg of "Sign in with Viktor" — outside the auth guards
+          because it owns the loading/outcome handling itself. */}
+      <Route path={OAUTH_CALLBACK_PATH} element={<ViktorOAuthCallbackPage />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/pengeluaran" element={<ExpensesPage />} />
+          <Route path="/pemasukan" element={<IncomePage />} />
+          <Route path="/tabungan" element={<SavingsPage />} />
+          <Route path="/tabungan/:goalId" element={<SavingsGoalPage />} />
+          <Route path="/anggaran" element={<BudgetsPage />} />
+          <Route path="/dompet" element={<WalletsPage />} />
+          <Route path="/laporan" element={<ReportsPage />} />
+          <Route path="/whatsapp" element={<WhatsAppPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+export function AuthenticatedAppRoutes() {
+  return (
+    <ViktorProductAuthProvider enabled>
+      {/* Outside the routes so links carrying `viktor_sign_in=auto` work no
+          matter which page they land on. */}
+      <ViktorAutoSignIn />
+      <AuthenticatedRoutes />
+    </ViktorProductAuthProvider>
+  );
+}

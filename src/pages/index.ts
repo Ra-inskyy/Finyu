@@ -1,0 +1,12 @@
+export { BudgetsPage } from "./BudgetsPage";
+export { DashboardPage } from "./DashboardPage";
+export { LandingPage } from "./LandingPage";
+export { LoginPage } from "./LoginPage";
+export { ReportsPage } from "./ReportsPage";
+export { SavingsGoalPage } from "./SavingsGoalPage";
+export { SavingsPage } from "./SavingsPage";
+export { SettingsPage } from "./SettingsPage";
+export { SignupPage } from "./SignupPage";
+export { ExpensesPage, IncomePage } from "./TransactionsPage";
+export { WalletsPage } from "./WalletsPage";
+export { WhatsAppPage } from "./WhatsAppPage";
