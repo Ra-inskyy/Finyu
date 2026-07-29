@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npx convex codegen",
-    "build": "npx convex codegen && vite build",
-    "vercel-build": "npx convex codegen && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "check": "biome check .",
     "format": "biome check --write .",
