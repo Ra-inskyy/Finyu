@@ -1,7 +1,0 @@
-{
-  "version": 1,
-  "auth": {
-    "mode": "authenticated",
-    "providers": ["email_password"]
-  }
-}
