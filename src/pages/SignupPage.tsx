@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { GoogleSignInSection } from "@/components/GoogleSignInSection";
-import { ResendOtpForm } from "@/components/ResendOtpForm";
+import { SignUp } from "@/components/SignUp";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
 
 export function SignupPage() {
-
   return (
     <div className="flex-1 flex items-center justify-center p-4 relative">
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -28,10 +27,7 @@ export function SignupPage() {
 
         <GoogleSignInSection showEmailDivider={true} />
         
-        <ResendOtpForm
-          title="Daftar Cepat via OTP Email"
-          buttonText="Kirim Kode OTP Pendaftaran"
-        />
+        <SignUp />
 
         <p className="text-center text-sm text-muted-foreground">
           Sudah punya akun?{" "}

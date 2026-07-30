@@ -104,12 +104,12 @@ export function SignUp() {
     <Card variant="elevated">
       <CardContent className="pt-6">
         <div className="text-center mb-6">
-          <div className="mx-auto size-12 rounded-full bg-primary flex items-center justify-center mb-4">
-            <Mail className="size-6 text-primary-foreground" />
+          <div className="mx-auto size-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <Mail className="size-6 text-primary" />
           </div>
-          <h2 className="font-semibold text-lg">Cek emailmu</h2>
+          <h2 className="font-semibold text-lg">Cek Email Kamu</h2>
           <p className="text-sm text-muted-foreground">
-            Kode verifikasi sudah dikirim ke {step.email}
+            Kode verifikasi OTP 6-digit telah dikirim ke <span className="font-medium text-foreground">{step.email}</span>
           </p>
         </div>
         <form
@@ -122,7 +122,7 @@ export function SignUp() {
             try {
               await signIn("password", formData);
             } catch {
-              setError("Kode salah atau sudah kedaluwarsa. Coba lagi.");
+              setError("Kode OTP salah atau sudah kedaluwarsa. Coba lagi.");
             } finally {
               setLoading(false);
             }
@@ -130,35 +130,37 @@ export function SignUp() {
           className="space-y-4"
         >
           <div className="space-y-2">
-            <Label htmlFor="code">Kode verifikasi</Label>
+            <Label htmlFor="code">Kode Verifikasi OTP (6-Digit)</Label>
             <Input
               id="code"
               name="code"
               type="text"
-              placeholder="Masukkan kode"
+              maxLength={6}
+              placeholder="123456"
               autoComplete="one-time-code"
-              className="h-11 text-center tracking-[0.5em] font-mono"
+              className="h-12 text-center text-xl font-mono tracking-[0.5em] font-bold"
+              autoFocus
               required
             />
           </div>
           <input name="flow" value="email-verification" type="hidden" />
           <input name="email" value={step.email} type="hidden" />
           {error && (
-            <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2">
+            <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2 text-center">
               {error}
             </p>
           )}
           <Button type="submit" className="w-full h-11" disabled={loading}>
-            {loading && <Loader2 className="size-4 animate-spin" />}
-            {loading ? "Memverifikasi..." : "Verifikasi email"}
+            {loading && <Loader2 className="size-4 animate-spin mr-2" />}
+            {loading ? "Memverifikasi..." : "Verifikasi & Selesaikan Pendaftaran"}
           </Button>
           <Button
             type="button"
             variant="ghost"
-            className="w-full"
+            className="w-full text-xs text-muted-foreground"
             onClick={() => setStep("signUp")}
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-3.5 mr-1" />
             Kembali ke pendaftaran
           </Button>
         </form>
