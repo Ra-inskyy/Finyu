@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import { GoogleSignInSection } from "@/components/GoogleSignInSection";
 import { ResendOtpForm } from "@/components/ResendOtpForm";
-import { SignUp } from "@/components/SignUp";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
-import { getEmailPasswordSignInAvailable } from "@/lib/viktor-spaces-access/config";
 
 export function SignupPage() {
-  const emailPasswordAvailable = getEmailPasswordSignInAvailable();
 
   return (
     <div className="flex-1 flex items-center justify-center p-4 relative">
@@ -35,8 +32,6 @@ export function SignupPage() {
           title="Daftar Cepat via OTP Email"
           buttonText="Kirim Kode OTP Pendaftaran"
         />
-
-        {emailPasswordAvailable && <SignUp />}
 
         <p className="text-center text-sm text-muted-foreground">
           Sudah punya akun?{" "}
