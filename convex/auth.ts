@@ -2,10 +2,11 @@ import "./authEnv";
 import Google from "@auth/core/providers/google";
 import { convexAuth, getAuthUserId } from "@convex-dev/auth/server";
 import { query } from "./_generated/server";
+import { ResendOTP } from "./ResendOTP";
 import { configuredAuthProviders } from "./viktorSpaceAuthConfig";
 
 export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
-  providers: [Google, ...configuredAuthProviders()],
+  providers: [Google, ResendOTP, ...configuredAuthProviders()],
 });
 
 export const googleSignInEnabled = query({

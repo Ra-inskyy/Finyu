@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { GoogleSignInSection } from "@/components/GoogleSignInSection";
+import { ResendOtpForm } from "@/components/ResendOtpForm";
 import { SignIn } from "@/components/SignIn";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
@@ -15,7 +16,6 @@ function getEmailPasswordAvailable(): boolean {
 
 export function LoginPage() {
   const emailPasswordAvailable = getEmailPasswordAvailable();
-  const signInUnavailable = !emailPasswordAvailable;
 
   return (
     <div className="flex-1 flex items-center justify-center p-4 relative">
@@ -37,23 +37,18 @@ export function LoginPage() {
           </p>
         </div>
 
-        <GoogleSignInSection showEmailDivider={emailPasswordAvailable} />
-        {emailPasswordAvailable && <SignIn />}
-        {signInUnavailable && (
-          <p className="text-sm text-destructive bg-destructive/10 rounded-lg px-3 py-2 text-center">
-            Login sedang tidak tersedia: aplikasi ini belum punya metode masuk
-            yang aktif. Hubungi pemilik aplikasi.
-          </p>
-        )}
+        <GoogleSignInSection showEmailDivider={true} />
+        
+        <ResendOtpForm />
 
-        {emailPasswordAvailable && (
-          <p className="text-center text-sm text-muted-foreground">
-            Belum punya akun?{" "}
-            <Button variant="link" className="p-0 h-auto font-medium" asChild>
-              <Link to="/signup">Daftar</Link>
-            </Button>
-          </p>
-        )}
+        {emailPasswordAvailable && <SignIn />}
+
+        <p className="text-center text-sm text-muted-foreground">
+          Belum punya akun?{" "}
+          <Button variant="link" className="p-0 h-auto font-medium" asChild>
+            <Link to="/signup">Daftar</Link>
+          </Button>
+        </p>
       </div>
     </div>
   );

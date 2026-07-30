@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as ResendOTP from "../ResendOTP.js";
 import type * as ViktorSpacesEmail from "../ViktorSpacesEmail.js";
 import type * as auth from "../auth.js";
 import type * as budgets from "../budgets.js";
@@ -41,6 +42,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  ResendOTP: typeof ResendOTP;
   ViktorSpacesEmail: typeof ViktorSpacesEmail;
   auth: typeof auth;
   budgets: typeof budgets;
