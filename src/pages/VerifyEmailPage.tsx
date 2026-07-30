@@ -34,7 +34,7 @@ export function VerifyEmailPage() {
     setLoading(true);
 
     try {
-      await signIn("resend-otp", { email });
+      await signIn("password", { flow: "email-verification", email });
       setCountdown(60);
     } catch (err: any) {
       console.error(err);
@@ -54,7 +54,7 @@ export function VerifyEmailPage() {
     setLoading(true);
 
     try {
-      await signIn("resend-otp", { email, code });
+      await signIn("password", { flow: "email-verification", email, code });
       navigate("/dashboard");
     } catch (err: any) {
       console.error(err);

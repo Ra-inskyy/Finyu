@@ -18,18 +18,21 @@ export function SignUp() {
 
   const handleStartSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !password) return;
     setError("");
     setLoading(true);
 
+    const formData = new FormData(e.currentTarget);
+    formData.set("flow", "signUp");
+
     try {
-      // Send 6-Digit OTP via Resend to the registered email address
-      await signIn("resend-otp", { email });
+      // Create account via password provider, which triggers ResendOTP verification code
+      await signIn("password", formData);
       // Redirect browser to dedicated verification page /verify-email
       navigate(`/verify-email?email=${encodeURIComponent(email)}`);
     } catch (err: any) {
       console.error(err);
-      setError(err?.message || "Gagal mendaftar. Pastikan email valid.");
+      setError(err?.message || "Gagal mendaftar. Pastikan email valid dan password minimal 6 karakter.");
     } finally {
       setLoading(false);
     }
