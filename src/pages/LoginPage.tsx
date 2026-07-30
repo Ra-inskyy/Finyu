@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { GoogleSignInSection } from "@/components/GoogleSignInSection";
-import { ResendOtpForm } from "@/components/ResendOtpForm";
 import { SignIn } from "@/components/SignIn";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
@@ -37,9 +36,7 @@ export function LoginPage() {
           </p>
         </div>
 
-        <GoogleSignInSection showEmailDivider={true} />
-        
-        <ResendOtpForm />
+        <GoogleSignInSection showEmailDivider={emailPasswordAvailable} />
 
         {emailPasswordAvailable && <SignIn />}
 
