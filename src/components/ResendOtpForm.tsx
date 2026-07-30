@@ -6,7 +6,15 @@ import { Card, CardContent } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export function ResendOtpForm() {
+interface ResendOtpFormProps {
+  title?: string;
+  buttonText?: string;
+}
+
+export function ResendOtpForm({
+  title = "Masuk / Daftar via OTP Email (Resend)",
+  buttonText = "Kirim Kode OTP",
+}: ResendOtpFormProps = {}) {
   const { signIn } = useAuthActions();
   const [step, setStep] = useState<"input-email" | "input-code">("input-email");
   const [email, setEmail] = useState("");
@@ -68,7 +76,7 @@ export function ResendOtpForm() {
             <div className="space-y-2">
               <Label htmlFor="otp-email" className="flex items-center gap-2">
                 <Mail className="size-4 text-primary" />
-                Masuk via OTP Email (Resend)
+                {title}
               </Label>
               <Input
                 id="otp-email"
@@ -87,7 +95,7 @@ export function ResendOtpForm() {
             )}
             <Button type="submit" className="w-full h-11" disabled={loading}>
               {loading && <Loader2 className="size-4 animate-spin mr-2" />}
-              {loading ? "Mengirim OTP..." : "Kirim Kode OTP"}
+              {loading ? "Mengirim OTP..." : buttonText}
             </Button>
           </form>
         </CardContent>
