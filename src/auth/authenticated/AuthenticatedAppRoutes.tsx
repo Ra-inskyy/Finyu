@@ -18,6 +18,7 @@ import {
   SavingsPage,
   SettingsPage,
   SignupPage,
+  VerifyEmailPage,
   WalletsPage,
   WhatsAppPage,
 } from "@/pages";
@@ -31,6 +32,7 @@ export function AuthenticatedRoutes() {
         <Route element={<PublicOnlyRoute />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/verify-email" element={<VerifyEmailPage />} />
         </Route>
       </Route>
 
